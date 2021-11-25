@@ -1,7 +1,7 @@
-BSD 2-Clause License
-
-Copyright (c) 2021, EMarci15
+Copyright (c) 2021, Marton Erdos
 All rights reserved.
+
+Files in this project are released under the BSD 2-Clause License, as specified below. The repositories cloned by the scripts (minesweeper and jemalloc-minesweeper) have separate licenses.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
