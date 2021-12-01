@@ -99,3 +99,14 @@ print("========================================")
 print("==== Overhead: =========================")
 print("========================================")
 print(overhead)
+
+bmarks = ["astar", "bzip2", "dealII", "gcc", "gobmk", "h264ref", "hmmer", "lbm", "libquantum", "mcf", "milc", "namd", "omnetpp", "perlbench", "povray", "sjeng", "soplex", "sphinx3", "xalancbmk"]
+failed = []
+for bmark in bmarks:
+    if bmark in overhead.index:
+        continue
+    failed.append(bmark)
+
+if len(failed) != 0:
+    print("!!! The following benchmarks failed to run:")
+    print("\n".join(failed)
