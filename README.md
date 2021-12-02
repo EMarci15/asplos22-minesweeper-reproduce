@@ -1,6 +1,6 @@
 # Research data supporting "*MineSweeper: a "clean sweep" for drop-in use-after-free prevention*"
 
-This is the artifact for the ASPLOS'22 paper **MineSweeper: a "clean sweep" for drop-in use-after-free prevention**. Version 1.0.
+This is the artifact for the ASPLOS'22 paper **MineSweeper: a "clean sweep" for drop-in use-after-free prevention**. Version 1.0.0
 
 ## Contents
 This directory contains scripts to build, run and evaluate our implementation's time and memory usage cost over the C/C++ portion of the SPEC CPU&copy; 2006 benchmark suite.
