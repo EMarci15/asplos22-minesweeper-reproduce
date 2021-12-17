@@ -2,6 +2,8 @@
 
 cd ..
 
+echo "===== Building SPEC"
+
 if [ ! -d "SPEC" ]
 then
     echo "Looking for SPEC ISO file:"
@@ -29,8 +31,12 @@ export LDIR="$(pwd)/lib"
 sed -i "s~LIBDIR~${LDIR}~g" SPEC/config/je.cfg
 sed -i "s~LIBDIR~${LDIR}~g" SPEC/config/minesweeper.cfg
 
+echo "===== Building SPEC benchmarks"
+
 cd SPEC
 . ./shrc
 runspec --config=base.cfg --action=build astar bzip2 dealII gcc gobmk h264ref hmmer lbm libquantum mcf milc namd omnetpp perlbench povray sjeng soplex sphinx3 xalancbmk -I
 
 cd ../scripts
+
+echo "===== Done building SPEC & benchmarks"

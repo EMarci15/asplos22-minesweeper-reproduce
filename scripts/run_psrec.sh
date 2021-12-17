@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "===== Running with psrecord to get memory overhead"
+
 cd ../SPEC
 source ./shrc
 
@@ -19,6 +21,8 @@ do
         ../psrecord --include-children --interval 0.5 --log "../ps/${BENCHMARK}-${CONFIG}.txt" "runspec --size=ref --iterations=1 --config=$CONFIG.cfg ${BENCHMARK}"
     done
 done
+
+echo "===== Done running memory overhead measurements"
 
 cd ../scripts
 

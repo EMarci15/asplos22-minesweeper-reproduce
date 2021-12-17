@@ -30,6 +30,7 @@ def read_spec(num, DIR):
     fp = read_spec_txt(f"{DIR}/CFP2006.{num:03}.txt")
     return pd.concat([i,fp])
 
+print("===== Printing time overhead")
 print("Finding results...")
 DIR="../SPEC/result"
 try:

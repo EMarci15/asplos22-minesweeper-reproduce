@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "===== Installing dependencies"
+
 export DEPENDENCIES="python3 python3-pip gcc make"
 
 if command -v sudo >/dev/null
@@ -41,4 +43,6 @@ fi
 mkdir -p ../lib
 ln -sf $PSREC ../psrecord
 ln -sf $LIBDL ../lib/libdl.so
+
+echo "===== Done installing dependencies"
 

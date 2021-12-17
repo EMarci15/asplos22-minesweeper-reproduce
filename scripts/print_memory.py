@@ -80,6 +80,7 @@ def read_all():
 def gmean(df):
     return (df**(1/len(df.index))).prod()
 
+print("===== Printing memory usage overhead")
 DIR="../ps"
 
 print(f"Reading psrecord memory traces from directory: {DIR}")

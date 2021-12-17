@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Cloning Minesweeper repositories"
+echo "===== Cloning Minesweeper repositories"
 cd ..
 
 if [ ! -f "minesweeper-public/.git" ]; then
@@ -17,7 +17,7 @@ if [ ! -f "jemalloc-msweeper-public/.git" ]; then
     cd ..
 fi
 
-echo "Done cloning/already cloned."
+echo "===== Done cloning/already cloned."
 
 cd scripts
 
