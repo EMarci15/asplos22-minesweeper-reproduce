@@ -79,5 +79,5 @@ for bmark in bmarks:
 
 if len(failed) != 0:
     print("!!! The following benchmarks failed to run:")
-    print("\n".join(failed)
+    print("\n".join(failed))
 
