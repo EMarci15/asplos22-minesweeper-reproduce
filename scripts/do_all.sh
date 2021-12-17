@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [ -d "scripts" ]
+then
+  cd scripts
+fi
+
 # Install dependencies
 ./dependencies.sh
 
