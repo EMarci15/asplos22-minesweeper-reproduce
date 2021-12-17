@@ -2,7 +2,7 @@
 
 echo "===== Installing dependencies"
 
-export DEPENDENCIES="python3 python3-pip gcc make autoconf"
+export DEPENDENCIES="python3 python3-pip gcc make autoconf sudo"
 
 if command -v sudo >/dev/null
 then
