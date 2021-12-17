@@ -9,7 +9,7 @@
 ./clone.sh
 
 # Build SPEC, JeMalloc and MineSweeper
-./build.sh
+./build.sh || { echo "Build failed! Exiting.."; exit 1; }
 mkdir -p ../results
 
 # Run time slowdown analysis (run+result processing)

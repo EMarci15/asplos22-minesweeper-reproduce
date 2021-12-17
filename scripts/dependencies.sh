@@ -1,14 +1,27 @@
 #!/bin/bash
 
-sudo apt install python3 python3-pip gcc make
-pip install psrecord psutil numpy pandas io
+export DEPENDENCIES="python3 python3-pip gcc make"
+
+if command -v sudo >/dev/null
+then
+  sudo apt install $DEPENDENCIES
+else
+  apt install $DEPENDENCIES
+fi
+
+pip3 install psrecord psutil numpy pandas
 
 # DEFINITIONS
 # psrecord executable
 export PSREC=~/.local/bin/psrecord
+if [ ! -f "$PSREC" ]; then
+  # It's not in the user's local directory. Maybe it's already installed system-wide? (e.g. su mode on a docker image)
+  export PSREC=($(whereis psrecord))
+  export PSREC=${PSREC[1]}
+fi
+
 # libdl library
 export LIBDL=/usr/lib/x86_64-linux-gnu/libdl.so
-
 
 # CHECKS
 if [ ! -f "$PSREC" ]; then
@@ -25,6 +38,7 @@ fi
 
 
 # CREATE SYMLINKS
-ln -sf ~/.local/bin/psrecord ../psrecord
-ln -sf /usr/lib/x86_64-linux-gnu/libdl.so ../lib/libdl.so
+mkdir -p ../lib
+ln -sf $PSREC ../psrecord
+ln -sf $LIBDL ../lib/libdl.so
 

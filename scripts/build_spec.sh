@@ -4,9 +4,13 @@ cd ..
 
 if [ ! -d "SPEC" ]
 then
-    mkdir specmnt
-    mkdir SPEC
-    sudo mount -o loop cpu2006*.iso specmnt
+    echo "Looking for SPEC ISO file:"
+    ls *cpu2006*.iso || { echo "SPEC ISO not found!"; exit 1; }
+
+    mkdir -p specmnt
+    mkdir -p SPEC
+
+    sudo mount -o loop *cpu2006*.iso specmnt
     cd specmnt
     ./install.sh -d ../SPEC
     cd ..
