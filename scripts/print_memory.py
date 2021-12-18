@@ -16,6 +16,9 @@ def fix_column_names(dataframe):
     return dataframe.drop(columns=["#"])\
                     .rename(columns={"Elapsed time": "time", "CPU (%)": "cpu", "Real (MB)": "mem", "Virtual (MB)": "virt"})
 
+class NoMineSweeperError(Exception):
+    pass
+
 # HACK to remove the footprint of the SPEC tools.
 # Not doing this would skew the results in our favour for two reasons:
 #     1. The first and last few seconds of the run are unaffected by adding
@@ -33,9 +36,7 @@ def remove_spec(base, minesweeper, corr=60.0):
     # Filter minesweeper run
     minesweeper = minesweeper.loc[minesweeper.virt.ge(2000000.0)]
     if (minesweeper.time.count() == 0):
-        print("ERROR: Virtual memory usage never above 2TiB!")
-        print("       Did MineSweeper ever get loaded?")
-        sys.exit(102)
+        raise NoMineSweeperError("ERROR: Virtual memory usage never above 2TiB! Did MineSweeper ever get loaded?")
 
     # Find time amount removed at the start and at the end
     min_time = minesweeper.iloc[0].time
@@ -60,7 +61,7 @@ def remove_spec(base, minesweeper, corr=60.0):
 
 # Read in data for a benchmark
 def read_all():
-    results = pd.DataFrame(index=pd.Index(BENCHMARKS))
+    results = pd.DataFrame(index=pd.Index(BENCHMARKS), columns=["baseline","minesweeper"])
     for benchmark in BENCHMARKS:
         print(f"Reading {benchmark}...")
         try:
@@ -72,6 +73,9 @@ def read_all():
             results["baseline"].loc[benchmark] = base["mem"].mean()
             results["minesweeper"].loc[benchmark] = minesweeper["mem"].mean()
         except FileNotFoundError as e:
+            print("")
+            print(e)
+        except NoMineSweeperError as e:
             print("")
             print(e)
     print(f"Done reading traces!")
@@ -86,6 +90,7 @@ DIR="../ps"
 print(f"Reading psrecord memory traces from directory: {DIR}")
 
 results = read_all()
+results.dropna(inplace=True)
 
 print("========================================")
 print("==== Memory usage: =====================")
