@@ -7,8 +7,10 @@ export DEPENDENCIES="python3 python3-pip gcc make autoconf sudo"
 if command -v sudo >/dev/null
 then
   sudo apt install $DEPENDENCIES
+  sudo sysctl vm.max_map_count=655300
 else
   apt install $DEPENDENCIES
+  sysctl vm.max_map_count=655300
 fi
 
 pip3 install psrecord psutil numpy pandas
