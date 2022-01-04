@@ -11,7 +11,7 @@ The implementation itself comes in two separate repositories. These are added as
 
 *(Note: If you cloned without this option, the folders `minesweeper-public` and `jemalloc-msweeper-public` will be empty, but the script will populate them for you by calling `scripts/clone.sh`)*
 
-For license reasons, we cannot include the SPEC files, so you will need to add your .iso disk image yourself. Add this to the root directory of this repository.
+For license reasons, we cannot include the SPEC files, so you will need to add your .iso disk image yourself. Add this to the root directory of this repository. Make sure the file name matches `*cpu2006*.iso` (i.e. it contains "cpu2006" and the extension is ".iso").
 
 ## How to run
 After cloning the repository and inserting the SPEC .iso disk image (as described above), you can simply build, run and evaluate the results as follows:
@@ -25,7 +25,7 @@ If debugging is needed, you want to customise your run (e.g. because you do not 
 The results will be printed to the screen and placed in two text files in the `results` folder.
 
 ## System requirements
-We created and tested this artifact on Ubuntu 14.04 and 20.04. Older versions, or a different Linux distribution should also work, but this is untested, and you may need to change the package names and/or their install method (see `scripts/dependencies.sh`). The artifact is designed to run on x86_64, and some implementation details are specific to this, however porting to different architectures should be possible.
+We created and tested this artifact on Ubuntu 18.04 and newer. Older versions, or a different Linux distribution should also work, but this is untested, and you may need to change the package names and/or their install method (see `scripts/dependencies.sh`). The artifact is designed to run on x86_64, and some implementation details are specific to this, however porting to different architectures should be possible.
 
 ## Results to expect
 As reported in the paper, this setup[^1] produced the following results on our machine in terms of geometric mean over the whole benchmark set:
