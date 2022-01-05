@@ -1,6 +1,8 @@
 [submodule "minesweeper-public"]
 	path = minesweeper-public
 	url = https://bitbucket.org/me412/minesweeper-public.git
+	branch = master
 [submodule "jemalloc-msweeper-public"]
 	path = jemalloc-msweeper-public
 	url = https://bitbucket.org/me412/jemalloc-msweeper-public.git
+	branch = master

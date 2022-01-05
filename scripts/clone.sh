@@ -3,7 +3,7 @@
 echo "===== Cloning Minesweeper repositories"
 
 git submodule init
-git submodule update
+git submodule update --remote
 
 echo "===== Done cloning/already cloned."
 
