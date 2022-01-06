@@ -15,7 +15,7 @@ cp build/lib/libjemalloc.so ../lib/libjemalloc.so
 echo "===== Building MineSweeper"
 cd ../minesweeper-public
 ln -s ../jemalloc-msweeper-public/include/jemalloc/ jemalloc
-LDIR=$(pwd)/../lib make minesweeper
+LDIR=$(pwd)/../lib make opt
 
 echo "===== Done building MineSweeper & JeMalloc"
 
