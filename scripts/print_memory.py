@@ -30,13 +30,23 @@ class NoMineSweeperError(Exception):
 #         this many seconds from both the baseline and minesweeper runs.
 #         Then, subtract 60MiB from all recorded physical memory usage entries
 #         in both runs.
-def remove_spec(base, minesweeper, corr=60.0):
+def remove_spec(base, minesweeper):
     m_end_time = minesweeper.iloc[-1].time
 
     # Filter minesweeper run
+    minesweeper_plus_spec = minesweeper
     minesweeper = minesweeper.loc[minesweeper.virt.ge(2000000.0)]
     if (minesweeper.time.count() == 0):
         raise NoMineSweeperError("ERROR: Virtual memory usage never above 2TiB! Did MineSweeper ever get loaded?")
+
+    minesweeper_plus_spec = minesweeper_plus_spec.loc[minesweeper_plus_spec.time.gt(minesweeper.time.iloc[-1])].iloc[1:5]
+    if (minesweeper_plus_spec.mem.std() > 1):
+      print("Warning: SPEC memory usage seems unstable. Start of trace after benchmark run:")
+      print(minesweeper_plus_spec)
+      corr = 60
+    else:
+      corr = minesweeper_plus_spec.mem.mean()
+    # print(corr)
 
     # Find time amount removed at the start and at the end
     min_time = minesweeper.iloc[0].time
@@ -78,6 +88,9 @@ def read_all():
         except NoMineSweeperError as e:
             print("")
             print(e)
+        except IndexError as e:
+            print("Exception occurred while processing: this benchmark likely failed.")
+            print(repr(e))
     print(f"Done reading traces!")
     return results
 

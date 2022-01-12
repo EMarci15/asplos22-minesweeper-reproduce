@@ -26,8 +26,12 @@ def read_spec_txt(filename):
         return df
 
 def read_spec(num, DIR):
-    i = read_spec_txt(f"{DIR}/CINT2006.{num:03}.txt")
-    fp = read_spec_txt(f"{DIR}/CFP2006.{num:03}.txt")
+    try:
+        i = read_spec_txt(f"{DIR}/CINT2006.{num:03}.txt")
+        fp = read_spec_txt(f"{DIR}/CFP2006.{num:03}.txt")
+    except FileNotFoundError:
+        i = read_spec_txt(f"{DIR}/CINT2006.{num:03}.ref.txt")
+        fp = read_spec_txt(f"{DIR}/CFP2006.{num:03}.ref.txt")
     return pd.concat([i,fp])
 
 print("===== Printing time overhead")
