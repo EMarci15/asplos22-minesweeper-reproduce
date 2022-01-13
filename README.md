@@ -50,6 +50,6 @@ As reported in the paper, this setup[^1] produced the following results on our m
 
 Every system differs, and you might see somewhat different results (on another machine we saw lower partial overheads, and we saw higher overheads for schemes we reproduced than reported in the original papers), but the results should be in the same region.
 
-Note that failures will change the geomean results, so watch out for this if the script reports failed benchmarks. For us, *soplex* failed (both baseline and minesweeper runs), but the other benchmarks ran correctly.
+Note that failures will change the geomean results, so watch out for this if the script reports failed benchmarks.
 
 [^1]: For the reported results, we took the median of three runs, whereas the artifact only runs the tests a single time to save time.
