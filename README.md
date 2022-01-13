@@ -27,6 +27,21 @@ The results will be printed to the screen and placed in two text files in the `r
 ## System requirements
 We created and tested this artifact on Ubuntu 18.04 and newer. Older versions, or a different Linux distribution should also work, but this is untested, and you may need to change the package names and/or their install method (see `scripts/dependencies.sh`). The artifact is designed to run on x86_64, and some implementation details are specific to this, however porting to different architectures should be possible.
 
+**Using docker:** If you are struggling to get the code to run on your system (e.g. if you have a different OS/distribution/release), you can try using our setup on the *ubuntu:18.04* image in *docker* below. This should produce a correct output on x86_64 systems:
+
+	--- On host (written for Linux) ---
+	git clone --recurse-submodules https://github.com/EMarci15/asplos22-minesweeper-reproduce.git
+	cp spec-cpu2006.iso asplos22-minesweeper-reproduce/cpu2006.iso #Add SPEC CPU2006 disk image
+	tar cf reproduce.tar asplos22-minesweeper-reproduce
+	docker run --name minesweeper-reproduce --privileged -ti ubuntu:18.04 bash
+	docker cp reproduce.tar minesweeper-reproduce:/reproduce.tar
+	
+	--- Inside container ---
+	apt update && apt install tar git
+	tar xf reproduce.tar
+	cd asplos22-minesweeper-reproduce/scripts
+	./do_all.sh
+
 ## Results to expect
 As reported in the paper, this setup[^1] produced the following results on our machine in terms of geometric mean over the whole benchmark set:
 
